@@ -1,0 +1,49 @@
+* Client types
+Client can mean different but interrelated things
+** Programming Interface ORM
+Here Client includes or subsumes access to the underlying UOP in either embedded or some netwark access means.  But it also includes a programming language interface for dealing with UOP interaction.  This interface provides a class/type, declaration and manipulation of UOP basic structures.
+
+Originally only Python language ORM will be provided.  Others can be added later by interested parties.
+
+*** Enhanced Class declaration
+**** Creating and specializing  UOP classes
+This includes creating programming language environment classes for existing classes in the UOP database automatically in languages where this is possible.
+**** Specifying UOP class attributes
+This includes name, type, and various constrainst on the the attribute such as being required or not. 
+**** specification of pickle/unpickle logic
+*** Management of instantiated state
+** Programmatic Interface
+An ORM is a wrapper around lower level mechanisms.  Here we access a local or remote DBI or DBI wrapper exposing a set of capabilities.
+
+These are defined in uopclien.connect.generic.
+* State vs Connection
+ClientState is about cached working state of a client.  Connection provides access to an underlying UOP DBI whether local or remote.  ClientState depends upon a connection.   It contains persistent content and capabilities relative to the client process.
+
+Thus ClientState knows about local in memory objects, associations and other such artifacts possibly locally modified and not yet committed.   This implies for some types of queries local uncommitted state must be included in results. (?!)
+
+It is guaranteed at least that the local state of a persisted item is at the least the state of that item at the current transaction beginning.  If we have hot (polled or async) knowledge of underlying db changes then it could be possible to do better than this modulo local uncommitted changes.
+* Misc
+** How DBI is created
+This is relevant to how direct connections are made.  Otherwise it is only relevant to servers BUT the server has to afford a way to select a DBI for the current session/connection.  And thus remote servers have to support session mechanism. 
+
+
+* Tasks
+** TODO normalize .connect interfaces and uop_connect
+*** DONE move uop_connect to uopclient
+CLOSED: [2024-07-27 Sat 13:22]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-07-27 Sat 13:22]
+:END:
+*** TODO get rid of ContextMixin and SyncContext
+SyncContext was questionable way to have second no tenant DBI. It existing made ContextMixin reasonable as place to put common functionality between SyncContext and UOPContext.  But in practice SyncContext was never used.
+*** DONE let get_uop_context be heart of direct interface
+CLOSED: [2024-07-29 Mon 13:43]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-07-29 Mon 13:43]
+:END:
+Also note that underlying UOP servers is some type of direct interface.
+** TODO make ClientState use a connect class
+This will pay off down the line in that it is much easier to substitute an external connection such as web for the direct connection or vice versa. It pays nice dividends down the road. 
+
+
+

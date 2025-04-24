@@ -1,0 +1,41 @@
+* ClientState vs MetaContext
+To handle unsaved changes ClientState uses IDCache.  Main UOP has only already persisted data in MetaContext.  Several useful algorithms are off of MetaContext.   It would be good to have a MetaContext based on some kind of cached ByNameId tied to IDCache perhaps.  The alternate would be duplicating some algorithms for ClientState.
+** Plan
+*** ByNameId CachedByNameId subclass
+**** DONE create as upgrade of IDCached
+CLOSED: [2024-10-01 Tue 15:51]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 15:51]
+:END:
+
+**** DONE substitute for IDCached in ClientState
+CLOSED: [2024-10-01 Tue 15:51]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 15:51]
+:END:
+
+**** DONE ensure initialized with ClientState init
+CLOSED: [2024-10-01 Tue 15:51]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 15:51]
+:END:
+
+**** DONE replace state._meta_editable
+CLOSED: [2024-10-01 Tue 16:36]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 16:36]
+:END:
+
+**** DONE ensure adjusted on commit / abort
+CLOSED: [2024-10-01 Tue 16:36]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 16:36]
+:END:
+
+**** DONE expose as ClientState metacontext
+CLOSED: [2024-10-01 Tue 15:51]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-10-01 Tue 15:51]
+:END:
+
+** Trade-offs and Challenges
